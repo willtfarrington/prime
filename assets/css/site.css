@@ -19,6 +19,9 @@
   --wip:       #3f6382;
   --priv:      #5f6873;
 
+  /* --serif is no longer used: headings and the credential line take --mono,
+     matching the kicker and the section numbers. Point the h1/h2 rules back at
+     it to restore the serif look. */
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
   --sans:  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono:  ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
@@ -60,9 +63,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.2; color: var(--ink); }
-h1 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); letter-spacing: -0.015em; margin: 0; }
-h2 { font-size: clamp(1.4rem, 1.2rem + 0.9vw, 1.85rem); margin: 0 0 0.35em; letter-spacing: -0.01em; }
+h1, h2, h3, h4 { font-family: var(--mono); font-weight: 600; line-height: 1.2; color: var(--ink); }
+h1 { font-size: clamp(1.75rem, 1.15rem + 2.2vw, 2.6rem); letter-spacing: -0.02em; margin: 0; }
+h2 { font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem); margin: 0 0 0.35em; letter-spacing: -0.015em; }
 h3 { font-size: 1.08rem; margin: 0 0 0.25em; }
 p  { margin: 0 0 1em; }
 
@@ -118,18 +121,16 @@ li { margin-bottom: 0.3em; }
   text-transform: uppercase; color: var(--muted); margin: 0 0 0.9rem;
 }
 .masthead .tagline {
-  font-family: var(--serif);
-  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
-  color: var(--ink-2); max-width: 42rem; margin: 0.85rem 0 0; line-height: 1.45;
+  font-family: var(--mono);
+  font-size: clamp(0.95rem, 0.88rem + 0.35vw, 1.1rem);
+  color: var(--ink-2); max-width: 46rem; margin: 0.8rem 0 0; line-height: 1.5;
 }
 .masthead .email {
   font-family: var(--mono); font-size: 0.92rem;
-  margin: 0.65rem 0 0; letter-spacing: -0.01em;
+  margin: 0.65rem 0 1.6rem; letter-spacing: -0.01em;
 }
 .masthead .email a { text-decoration: none; }
 .masthead .email a:hover { text-decoration: underline; }
-
-.rule-accent { width: 3.25rem; height: 3px; background: var(--accent); margin: 1.5rem 0 1.35rem; }
 
 .meta-line {
   font-size: 0.9rem; color: var(--muted); margin: 0 0 1.25rem;
@@ -181,11 +182,11 @@ li { margin-bottom: 0.3em; }
 }
 .doc:hover { border-color: var(--accent); }
 .doc .doc-icon { flex: none; width: 1.5rem; height: 1.5rem; color: var(--accent); margin-top: 0.15rem; }
-.doc strong { display: block; font-family: var(--serif); font-size: 1rem; font-weight: 600; }
+.doc strong { display: block; font-family: var(--mono); font-size: 0.95rem; font-weight: 600; }
 .doc span { display: block; font-size: 0.82rem; color: var(--muted); }
 
 /* --- timeline ------------------------------------------------------------ */
-.timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--rule); }
+.timeline { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--accent); }
 .timeline > li { position: relative; padding: 0 0 1.4rem 1.5rem; margin: 0; }
 .timeline > li::before {
   content: ""; position: absolute; left: -6px; top: 0.5rem;
@@ -197,11 +198,11 @@ li { margin-bottom: 0.3em; }
   font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em;
   color: var(--muted); text-transform: uppercase;
 }
-.timeline .what { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; margin: 0.1rem 0 0.15rem; }
+.timeline .what { font-family: var(--mono); font-size: 0.98rem; font-weight: 600; margin: 0.1rem 0 0.15rem; }
 .timeline .where { font-size: 0.9rem; color: var(--ink-2); margin: 0; }
 
 .fact-list { list-style: none; margin: 0; padding: 0; }
-.fact-list > li { padding: 0.7rem 0; border-bottom: 1px solid var(--rule); margin: 0; }
+.fact-list > li { padding: 0.7rem 0; border-bottom: 1px solid var(--accent); margin: 0; }
 .fact-list > li:last-child { border-bottom: 0; }
 .fact-list .label {
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
@@ -244,13 +245,13 @@ li { margin-bottom: 0.3em; }
 .subhead {
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--muted);
-  margin: 2.25rem 0 1rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
+  margin: 2.25rem 0 1rem; padding-top: 1.25rem; border-top: 1px solid var(--accent);
 }
 .subhead--first { margin-top: 0; padding-top: 0; border-top: 0; }
 
 .note {
   font-size: 0.86rem; color: var(--muted);
-  border-left: 2px solid var(--rule); padding-left: 0.9rem;
+  border-left: 2px solid var(--accent); padding-left: 0.9rem;
   margin: 1.5rem 0 0; max-width: var(--measure);
 }
 
