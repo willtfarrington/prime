@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- EDIT: title and description are what Google and link previews show. -->
+<title>W. Taylor Farrington, MD — Academic Hospitalist &amp; Clinical Data Informatics</title>
+<meta name="description" content="Academic hospitalist and clinical informatics builder. Curriculum vitae, professional narrative, and public clinical and peri-clinical data projects.">
+<meta name="author" content="W. Taylor Farrington">
+
+<link rel="canonical" href="https://williamtfarrington.com/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="W. Taylor Farrington, MD">
+<meta property="og:description" content="Academic hospitalist and clinical informatics builder — CV, professional narrative, and public data projects.">
+<meta property="og:url" content="https://williamtfarrington.com/">
+<meta name="twitter:card" content="summary">
+
+<meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ======================================================================
+     MASTHEAD — name, positioning line, contact rail
+     ====================================================================== -->
+<header class="masthead">
+  <div class="container">
+    <p class="kicker">Curriculum vitae &amp; project index</p>
+
+    <h1>W. Taylor Farrington, MD</h1>
+
+    <!-- EDIT: one or two sentences. This is the single most-read line on the page.
+         Say what you do, for whom, and what makes the combination unusual. -->
+    <p class="tagline">
+      Academic hospitalist building the data infrastructure that inpatient
+      medicine reasons with — clinical modeling, EMR-scale warehousing, and
+      reproducible analysis of the systems physicians actually work inside.
+    </p>
+
+    <div class="rule-accent" role="presentation"></div>
+
+    <!-- EDIT: location, board status, licensure. Delete any line you would
+         rather not publish; the separators are handled automatically. -->
+    <p class="meta-line">
+      <span>[City, State]</span>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>Board certified, Internal Medicine (ABIM)</span>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>Licensed in Texas &amp; Pennsylvania &middot; NPI 1154940732</span>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>Seeking academic hospitalist appointment</span>
+    </p>
+
+    <ul class="contact-row">
+      <!-- Email is assembled by script to keep it out of scraper harvests.
+           The noscript fallback below stays readable if scripts are blocked. -->
+      <li><a class="primary" id="email-link" href="#contact" data-user="william.t.farrington" data-domain="gmail.com">Email</a></li>
+      <li><a href="https://github.com/willtfarrington" rel="me">GitHub</a></li>
+      <!-- EDIT: replace the LinkedIn slug. -->
+      <li><a href="https://www.linkedin.com/in/[your-linkedin-slug]" rel="me">LinkedIn</a></li>
+      <!-- EDIT: replace with your ORCID iD, or delete this line. -->
+      <li><a href="https://orcid.org/[0000-0000-0000-0000]" rel="me">ORCID</a></li>
+      <!-- EDIT: replace with your Scholar profile URL, or delete this line. -->
+      <li><a href="https://scholar.google.com/citations?user=[SCHOLAR_ID]" rel="me">Google&nbsp;Scholar</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ======================================================================
+     STICKY SECTION NAV
+     ====================================================================== -->
+<nav class="subnav" aria-label="Section navigation">
+  <div class="container">
+    <ul>
+      <li><a href="#documents">Documents</a></li>
+      <li><a href="#narrative">Narrative</a></li>
+      <li><a href="#cv">Curriculum vitae</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ====================================================================
+       DOCUMENTS — the two PDFs a reviewer came here for
+       ====================================================================
+       WHEN THE PDFs EXIST: drop them in assets/docs/ using exactly these
+       filenames, then change each <div class="doc"> to
+       <a class="doc" href="assets/docs/....pdf"> ... </a>
+       and delete the "posting soon" span.
+       -->
+  <section class="section" id="documents" aria-labelledby="documents-h">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">01</span>
+        <h2 id="documents-h">Documents</h2>
+      </div>
+
+      <div class="doc-grid">
+        <div class="doc">
+          <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>
+          </svg>
+          <div>
+            <strong>Curriculum vitae</strong>
+            <span>PDF &middot; posting soon</span>
+          </div>
+        </div>
+
+        <div class="doc">
+          <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>
+            <path d="M9 13h6M9 17h4"/>
+          </svg>
+          <div>
+            <strong>Professional narrative</strong>
+            <span>PDF &middot; posting soon</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">
+        This page is a complement to the CV, not a replacement for it: the PDFs
+        carry the full record, and everything below is the short version plus
+        the working code behind it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       NARRATIVE — 3 short paragraphs distilled from the full document
+       ==================================================================== -->
+  <section class="section" id="narrative" aria-labelledby="narrative-h">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">02</span>
+        <h2 id="narrative-h">Professional narrative</h2>
+      </div>
+
+      <!-- EDIT: three paragraphs, roughly 60-90 words each. Paragraph 1: who
+           you are clinically. Paragraph 2: how the informatics work grew out of
+           the clinical work. Paragraph 3: what you are looking for now. -->
+      <div class="prose">
+        <p>
+          [Paragraph one — clinical identity. Where you trained, what kind of
+          inpatient medicine you practice, and what you are known for on the
+          wards. Written for a division chief who will read exactly this far
+          before deciding whether to open the CV.]
+        </p>
+        <p>
+          [Paragraph two — the through-line. How the questions that surfaced at
+          the bedside turned into models, warehouses, and analyses; why you
+          build the tooling yourself rather than commissioning it; what that
+          combination lets you do that neither skill alone would.]
+        </p>
+        <p>
+          [Paragraph three — the ask. The kind of academic hospitalist role you
+          are seeking after the move, the division and institutional context you
+          work best in, and the contribution you intend to make in the first
+          two years.]
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CURRICULUM VITAE — highlights only; the PDF holds the full record
+       ==================================================================== -->
+  <section class="section" id="cv" aria-labelledby="cv-h">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">03</span>
+        <h2 id="cv-h">Curriculum vitae</h2>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3 class="subhead" style="margin-top:0; padding-top:0; border-top:0;">Training &amp; appointments</h3>
+
+          <!-- EDIT: newest first. Add or remove <li> blocks freely. -->
+          <ol class="timeline">
+            <li>
+              <span class="when">[20XX &ndash; present]</span>
+              <p class="what">[Current role]</p>
+              <p class="where">[Institution, City]</p>
+            </li>
+            <li>
+              <span class="when">[20XX &ndash; 20XX]</span>
+              <p class="what">[Prior appointment]</p>
+              <p class="where">[Institution, City]</p>
+            </li>
+            <li>
+              <span class="when">[20XX &ndash; 20XX]</span>
+              <p class="what">Residency, Internal Medicine</p>
+              <p class="where">[Program, City]</p>
+            </li>
+            <li>
+              <span class="when">[20XX]</span>
+              <p class="what">Doctor of Medicine</p>
+              <p class="where">[Medical school, City]</p>
+            </li>
+            <li>
+              <span class="when">[20XX]</span>
+              <p class="what">[Undergraduate degree]</p>
+              <p class="where">[Institution, City]</p>
+            </li>
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="subhead" style="margin-top:0; padding-top:0; border-top:0;">At a glance</h3>
+
+          <!-- EDIT: five or six lines a search committee scans for. -->
+          <ul class="fact-list">
+            <li>
+              <span class="label">Certification</span>
+              <span class="value">[ABIM Internal Medicine, 20XX &ndash; 20XX]</span>
+            </li>
+            <li>
+              <span class="label">Licensure</span>
+              <span class="value">Texas &amp; Pennsylvania, active &middot; NPI 1154940732</span>
+            </li>
+            <li>
+              <span class="label">Clinical focus</span>
+              <span class="value">[Hospital medicine; e.g. perioperative co-management, transitions of care]</span>
+            </li>
+            <li>
+              <span class="label">Academic focus</span>
+              <span class="value">[e.g. clinical informatics, capacity &amp; operations modeling, health equity analytics]</span>
+            </li>
+            <li>
+              <span class="label">Teaching</span>
+              <span class="value">[Roles with students, residents, fellows]</span>
+            </li>
+            <li>
+              <span class="label">Selected work</span>
+              <span class="value">[Publications, abstracts, invited talks &mdash; full list in the CV]</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECTS
+       ====================================================================
+       CARD ANATOMY
+         <article class="card card--linked">   <- drop card--linked if no URL
+           card-top  : <h3> repo name (wrapped in <a> if public) + status badge
+           .hook     : one line, 12-20 words, what it does and why it matters
+           .tags     : 3-5 stack or method tags
+         </article>
+       BADGES: badge--public | badge--progress | badge--private
+       -->
+  <section class="section" id="projects" aria-labelledby="projects-h">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">04</span>
+        <h2 id="projects-h">Projects</h2>
+      </div>
+
+      <div class="prose">
+        <p>
+          Clinical and peri-clinical data work. Two repositories are public and
+          carry their own full write-ups, methods, and provenance notes; the
+          rest are in private development and are described here in outline.
+        </p>
+      </div>
+
+      <h3 class="subhead">Public repositories</h3>
+
+      <div class="card-grid">
+
+        <article class="card card--linked">
+          <div class="card-top">
+            <h3><a href="https://github.com/willtfarrington/hupsim">hupsim</a></h3>
+            <span class="badge badge--public">v1 shipped</span>
+          </div>
+          <p class="hook">
+            A room-level capacity model of a single academic hospital campus,
+            built entirely from cited public sources with a confidence tag on
+            every structural fact and all dynamics explicitly simulated.
+          </p>
+          <ul class="tags">
+            <li>simulation</li><li>capacity modeling</li><li>geospatial</li><li>provenance</li>
+          </ul>
+        </article>
+
+        <article class="card card--linked">
+          <div class="card-top">
+            <h3><a href="https://github.com/willtfarrington/mimicwarehouse">mimicwarehouse</a></h3>
+            <span class="badge badge--progress">In progress</span>
+          </div>
+          <p class="hook">
+            A local EMR data warehouse over MIMIC-IV with end-to-end provenance,
+            protocol-frozen inquiry over retrospective data, and a pre-commit
+            leak guard &mdash; data never leaves the machine. Public while in
+            flight; v1 is a way out.
+          </p>
+          <ul class="tags">
+            <li>MIMIC-IV</li><li>DuckDB</li><li>Polars</li><li>Streamlit</li><li>data governance</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <h3 class="subhead">Private &amp; in development</h3>
+
+      <div class="prose">
+        <p>
+          Described in outline while the work matures. Methods, code structure,
+          and results are available to discuss directly, and each repository
+          opens publicly once it reaches a defensible state.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <!-- EDIT: sharpen any hook below; duplicate a card to add a project. -->
+
+        <article class="card">
+          <div class="card-top">
+            <h3>phillysim</h3>
+            <span class="badge badge--private">Private</span>
+          </div>
+          <p class="hook">
+            Municipal disparity modeling for Philadelphia &mdash; linking public
+            administrative and health data to make neighborhood-level inequity
+            legible at the scale decisions are actually made.
+          </p>
+          <ul class="tags">
+            <li>health equity</li><li>public data</li><li>geospatial</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <h3>wikemgapsim</h3>
+            <span class="badge badge--private">Private</span>
+          </div>
+          <p class="hook">
+            Modeling editorial coverage gaps in WikEM, the open emergency
+            medicine reference &mdash; where the clinical knowledge commons is
+            thin, and whom that thinness reaches.
+          </p>
+          <ul class="tags">
+            <li>knowledge commons</li><li>text analysis</li><li>gap analysis</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <h3>epppsynth</h3>
+            <span class="badge badge--private">Private</span>
+          </div>
+          <p class="hook">
+            A structured synthesis of existential psychotherapy literature for
+            physicians and patients &mdash; corpus work applied to the parts of
+            clinical life that resist quantification.
+          </p>
+          <ul class="tags">
+            <li>corpus synthesis</li><li>physician wellbeing</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <h3>chesscomhistory</h3>
+            <span class="badge badge--private">Private</span>
+          </div>
+          <p class="hook">
+            A decade of personal game records as a longitudinal backbone for
+            cross-analysis &mdash; a controlled sandbox for time-series and
+            behavioral methods before they meet clinical data.
+          </p>
+          <ul class="tags">
+            <li>time series</li><li>API ingestion</li><li>methods sandbox</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <p class="note">
+        Some private work involves data that cannot be redistributed; the rest
+        is simply unfinished. Neither is listed here as a placeholder for
+        something that does not exist &mdash; ask, and I will walk you through
+        any of it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       TOOLKIT
+       ==================================================================== -->
+  <section class="section" id="toolkit" aria-labelledby="toolkit-h">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">05</span>
+        <h2 id="toolkit-h">Technical toolkit</h2>
+      </div>
+
+      <!-- EDIT: prune to what you would defend in an interview. -->
+      <div class="toolkit">
+        <div>
+          <h3>Languages</h3>
+          <p>Python, SQL, R, JavaScript</p>
+        </div>
+        <div>
+          <h3>Data engineering</h3>
+          <p>DuckDB, Parquet, Polars, pandas, dbt-style modeling, reproducible pipelines</p>
+        </div>
+        <div>
+          <h3>Clinical data</h3>
+          <p>MIMIC-IV, OMOP concepts, ICD-10 / CPT terminologies, de-identification &amp; disclosure discipline</p>
+        </div>
+        <div>
+          <h3>Analysis &amp; delivery</h3>
+          <p>Simulation &amp; discrete-event modeling, geospatial analysis, Streamlit, Git-based provenance</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CONTACT
+       ==================================================================== -->
+  <section class="section" id="contact" aria-labelledby="contact-h">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">06</span>
+        <h2 id="contact-h">Contact</h2>
+      </div>
+
+      <div class="prose">
+        <p>
+          I am currently seeking an academic hospitalist appointment. The
+          fastest way to reach me is email; I am glad to walk through any of
+          the work above, public or private.
+        </p>
+        <p id="email-display">
+          <noscript>william.t.farrington [at] gmail [dot] com</noscript>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year">2026</span> W. Taylor Farrington. Content licensed for reading; source code on GitHub.</p>
+    <p>Built as a static page &mdash; <a href="https://github.com/willtfarrington/prime">source</a>. Last updated <time datetime="2026-08-18">18 August 2026</time>.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>
