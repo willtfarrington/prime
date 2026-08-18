@@ -16,6 +16,8 @@ deployment process.
 
 ```
 index.html              the entire site (all content lives here)
+                        two panes: documents/narrative/CV left, projects/toolkit
+                        right; they stack into one column below 60rem
 404.html                not-found page (the only file with absolute paths)
 assets/css/site.css     all styling; design tokens at the top of the file
 assets/js/site.js       email obfuscation, footer year, nav scroll-spy
@@ -32,8 +34,8 @@ Every spot needing your content is marked with an `EDIT:` comment in
 
 | Section | What to supply |
 | --- | --- |
-| Masthead | Credentials, one-paragraph positioning line, city, licensure, NPI |
-| Contact rail | LinkedIn slug, ORCID iD, Google Scholar profile ID |
+| Masthead | Credential line, email, city, licensure, NPI |
+| Identifier rail | LinkedIn slug, ORCID iD, Google Scholar profile ID |
 | Documents | Drop the two PDFs in, then convert each card to a link (see below) |
 | Narrative | Three paragraphs distilled from the full narrative PDF |
 | Curriculum vitae | Timeline entries (newest first) and the "At a glance" facts |
@@ -73,8 +75,14 @@ Copy an existing `<article class="card">` block in the Projects section:
 ### Restyling
 
 All color, type, and spacing decisions are CSS custom properties at the top of
-`assets/css/site.css`. Change `--accent` alone to re-tone the whole page. Dark
-mode and print styles inherit from the same tokens automatically.
+`assets/css/site.css`. Change `--accent` alone to re-tone the whole page —
+it drives link color, the section rules, and the divider between the panes.
+Dark mode and print styles inherit from the same tokens automatically.
+
+To move a section between panes, cut its whole `<section>` block and paste it
+into the other `<div class="pane">`. Nothing else needs changing; add
+`subhead--first` to a section's first `<h3 class="subhead">` if it lands at the
+top of a pane.
 
 ## Previewing locally
 

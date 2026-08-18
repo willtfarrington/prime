@@ -1,35 +1,18 @@
 /* ==========================================================================
    prime — progressive enhancement only.
-   Every word of content is in the HTML; this file adds three conveniences:
-     1. assembles the email address so scrapers do not harvest it verbatim
-     2. stamps the current year in the footer
-     3. highlights the nav link for whichever section is on screen
+   Every word of content is in the HTML; this file adds two conveniences:
+     1. stamps the current year in the footer
+     2. highlights the nav link for whichever section is on screen
    The page is fully usable with JavaScript disabled.
    ========================================================================== */
 (function () {
   "use strict";
 
-  /* --- 1. email ---------------------------------------------------------- */
-  var link = document.getElementById("email-link");
-  if (link) {
-    var address = link.dataset.user + "@" + link.dataset.domain;
-    link.href = "mailto:" + address;
-
-    var display = document.getElementById("email-display");
-    if (display) {
-      var a = document.createElement("a");
-      a.href = "mailto:" + address;
-      a.textContent = address;
-      display.textContent = "";
-      display.appendChild(a);
-    }
-  }
-
-  /* --- 2. footer year ---------------------------------------------------- */
+  /* --- 1. footer year ---------------------------------------------------- */
   var year = document.getElementById("year");
   if (year) { year.textContent = String(new Date().getFullYear()); }
 
-  /* --- 3. scroll spy ----------------------------------------------------- */
+  /* --- 2. scroll spy ----------------------------------------------------- */
   var links = Array.prototype.slice.call(document.querySelectorAll(".subnav a"));
   var sections = links
     .map(function (a) { return document.querySelector(a.getAttribute("href")); })
