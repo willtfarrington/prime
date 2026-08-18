@@ -12,6 +12,7 @@
   --ink:       #17191d;
   --ink-2:     #3d434b;
   --muted:     #6b727c;
+  --muted-2:   #5a616b;   /* AA-safe on --surface-2 */
   --rule:      #e3ded6;
   --accent:    #9a5423;   /* muted burnt orange */
   --accent-in: #ffffff;
@@ -19,11 +20,10 @@
   --wip:       #3f6382;
   --priv:      #5f6873;
 
-  /* --serif is no longer used: headings and the credential line take --mono,
-     matching the kicker and the section numbers. Point the h1/h2 rules back at
-     it to restore the serif look. */
+  /* --serif carries the whole page. --mono is reserved for exactly two things:
+     the masthead kicker and the section numbers. */
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;  /* unused */
   --mono:  ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
 
   --measure: 34rem;   /* comfortable reading width for prose */
@@ -39,6 +39,7 @@
     --ink:       #e9e7e2;
     --ink-2:     #c4c8ce;
     --muted:     #939aa4;
+    --muted-2:   #939aa4;
     --rule:      #2c3037;
     --accent:    #dfa06e;   /* muted burnt orange, dark theme */
     --accent-in: #14161a;
@@ -50,22 +51,27 @@
 
 /* --- reset / base ------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* clears the ~46px sticky subnav so an anchored heading is never parked under it */
+  scroll-padding-top: 4rem;
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 { font-family: var(--mono); font-weight: 600; line-height: 1.2; color: var(--ink); }
-h1 { font-size: clamp(1.75rem, 1.15rem + 2.2vw, 2.6rem); letter-spacing: -0.02em; margin: 0; }
-h2 { font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem); margin: 0 0 0.35em; letter-spacing: -0.015em; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.2; color: var(--ink); }
+h1 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); letter-spacing: -0.015em; margin: 0; }
+h2 { font-size: clamp(1.4rem, 1.2rem + 0.9vw, 1.85rem); margin: 0 0 0.35em; letter-spacing: -0.01em; }
 h3 { font-size: 1.08rem; margin: 0 0 0.25em; }
 p  { margin: 0 0 1em; }
 
@@ -87,14 +93,16 @@ li { margin-bottom: 0.3em; }
 .section { padding-block: clamp(2.4rem, 5vw, 3.5rem); border-top: 1px solid var(--accent); }
 
 /* --- two panes ----------------------------------------------------------- */
-.panes { display: grid; grid-template-columns: 1fr; }
+.panes { display: grid; grid-template-columns: minmax(0, 1fr); }
 .pane > .section:first-child { padding-top: clamp(2rem, 4vw, 2.75rem); }
 /* The left pane opens directly under the nav rule, so it needs no rule of its
    own. Stacked on narrow screens the right pane DOES keep its rule, which is
    what separates the CV from Projects. */
 .pane--left > .section:first-child { border-top: 0; }
 
-@media (min-width: 60rem) {
+/* px, not rem: a rem breakpoint scales with the reader's default font size, which
+   could hold a perfectly wide window in one column. */
+@media (min-width: 900px) {
   .panes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .pane--left  { padding-right: clamp(1.75rem, 3.5vw, 3rem); border-right: 1px solid var(--accent); }
   .pane--right { padding-left:  clamp(1.75rem, 3.5vw, 3rem); }
@@ -115,18 +123,19 @@ li { margin-bottom: 0.3em; }
 .skip-link:focus { left: 0; }
 
 /* --- masthead ----------------------------------------------------------- */
-.masthead { padding-block: clamp(2.6rem, 7vw, 4.5rem) clamp(1.8rem, 4vw, 2.75rem); }
+.masthead { padding-block: clamp(2.6rem, 7vw, 4.5rem) clamp(1.8rem, 4vw, 2.75rem); text-align: center; }
 .masthead .kicker {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--muted); margin: 0 0 0.9rem;
 }
-.masthead .tagline {
-  font-family: var(--mono);
-  font-size: clamp(0.95rem, 0.88rem + 0.35vw, 1.1rem);
-  color: var(--ink-2); max-width: 46rem; margin: 0.8rem 0 0; line-height: 1.5;
+.masthead .credentials {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+  color: var(--ink-2); max-width: 46rem; margin: 0.9rem auto 0; line-height: 1.5;
 }
+.masthead .credentials span { display: block; }
 .masthead .email {
-  font-family: var(--mono); font-size: 0.92rem;
+  font-family: var(--serif); font-size: 0.92rem;
   margin: 0.65rem 0 1.6rem; letter-spacing: -0.01em;
 }
 .masthead .email a { text-decoration: none; }
@@ -134,11 +143,11 @@ li { margin-bottom: 0.3em; }
 
 .meta-line {
   font-size: 0.9rem; color: var(--muted); margin: 0 0 1.25rem;
-  display: flex; flex-wrap: wrap; gap: 0.4rem 0.85rem;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 0.85rem;
 }
-.meta-line .sep { color: var(--rule); }
+.meta-line .sep { color: var(--accent); }
 
-.contact-row { display: flex; flex-wrap: wrap; gap: 0.55rem; list-style: none; margin: 0; padding: 0; }
+.contact-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem; list-style: none; margin: 0; padding: 0; }
 .contact-row li { margin: 0; }
 .contact-row a {
   display: inline-block; padding: 0.4rem 0.85rem;
@@ -146,13 +155,18 @@ li { margin-bottom: 0.3em; }
   font-size: 0.86rem; text-decoration: none; color: var(--ink-2);
 }
 .contact-row a:hover { border-color: var(--accent); color: var(--accent); }
+/* used only by the 404 recovery link */
+.contact-row a.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-in); }
+.contact-row a.primary:hover { opacity: 0.9; color: var(--accent-in); }
 
 /* --- sticky nav --------------------------------------------------------- */
 .subnav {
   position: sticky; top: 0; z-index: 20;
   background: var(--bg);
-  border-block: 1px solid var(--accent);
 }
+/* The rules ride on the <ul>, not on .subnav, so they end where the panes end
+   instead of running the full width of the window. */
+.subnav .container > ul { border-block: 1px solid var(--accent); }
 @supports (backdrop-filter: blur(8px)) {
   .subnav {
     background: color-mix(in srgb, var(--bg) 88%, transparent);
@@ -173,7 +187,7 @@ li { margin-bottom: 0.3em; }
 .subnav a:hover, .subnav a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--accent); }
 
 /* --- documents (PDF cards) ---------------------------------------------- */
-.doc-grid { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.doc-grid { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); }
 .doc {
   display: flex; gap: 0.85rem; align-items: flex-start;
   padding: 1rem 1.1rem; background: var(--surface);
@@ -182,7 +196,7 @@ li { margin-bottom: 0.3em; }
 }
 .doc:hover { border-color: var(--accent); }
 .doc .doc-icon { flex: none; width: 1.5rem; height: 1.5rem; color: var(--accent); margin-top: 0.15rem; }
-.doc strong { display: block; font-family: var(--mono); font-size: 0.95rem; font-weight: 600; }
+.doc strong { display: block; font-family: var(--serif); font-size: 0.95rem; font-weight: 600; }
 .doc span { display: block; font-size: 0.82rem; color: var(--muted); }
 
 /* --- timeline ------------------------------------------------------------ */
@@ -195,23 +209,23 @@ li { margin-bottom: 0.3em; }
 }
 .timeline > li:last-child { padding-bottom: 0; }
 .timeline .when {
-  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em;
+  font-family: var(--serif); font-size: 0.74rem; letter-spacing: 0.06em;
   color: var(--muted); text-transform: uppercase;
 }
-.timeline .what { font-family: var(--mono); font-size: 0.98rem; font-weight: 600; margin: 0.1rem 0 0.15rem; }
+.timeline .what { font-family: var(--serif); font-size: 0.98rem; font-weight: 600; margin: 0.1rem 0 0.15rem; }
 .timeline .where { font-size: 0.9rem; color: var(--ink-2); margin: 0; }
 
 .fact-list { list-style: none; margin: 0; padding: 0; }
 .fact-list > li { padding: 0.7rem 0; border-bottom: 1px solid var(--accent); margin: 0; }
 .fact-list > li:last-child { border-bottom: 0; }
 .fact-list .label {
-  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
+  font-family: var(--serif); font-size: 0.7rem; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.15rem;
 }
 .fact-list .value { display: block; color: var(--ink-2); }
 
 /* --- project cards ------------------------------------------------------- */
-.card-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); }
+.card-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(19rem, 100%), 1fr)); }
 .card {
   display: flex; flex-direction: column; gap: 0.6rem;
   padding: 1.15rem 1.25rem 1.25rem;
@@ -220,7 +234,7 @@ li { margin-bottom: 0.3em; }
 .card--linked:hover { border-color: var(--accent); }
 .card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
 .card h3 {
-  font-family: var(--mono); font-size: 0.95rem; font-weight: 600;
+  font-family: var(--serif); font-size: 0.95rem; font-weight: 600;
   letter-spacing: -0.01em; margin: 0;
 }
 .card h3 a { text-decoration: none; color: var(--ink); }
@@ -228,13 +242,13 @@ li { margin-bottom: 0.3em; }
 .card .hook { font-size: 0.92rem; color: var(--ink-2); margin: 0; flex: 1 1 auto; }
 .card .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; list-style: none; margin: 0; padding: 0; }
 .card .tags li {
-  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.03em;
-  color: var(--muted); background: var(--surface-2);
+  font-family: var(--serif); font-size: 0.68rem; letter-spacing: 0.03em;
+  color: var(--muted-2); background: var(--surface-2);
   border: 1px solid var(--rule); border-radius: 3px; padding: 0.1rem 0.4rem; margin: 0;
 }
 
 .badge {
-  flex: none; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em;
+  flex: none; font-family: var(--serif); font-size: 0.65rem; letter-spacing: 0.1em;
   text-transform: uppercase; white-space: nowrap;
   padding: 0.15rem 0.45rem; border-radius: 3px; border: 1px solid currentColor;
 }
@@ -243,7 +257,7 @@ li { margin-bottom: 0.3em; }
 .badge--private  { color: var(--priv); }
 
 .subhead {
-  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
+  font-family: var(--serif); font-size: 0.7rem; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--muted);
   margin: 2.25rem 0 1rem; padding-top: 1.25rem; border-top: 1px solid var(--accent);
 }
@@ -256,18 +270,16 @@ li { margin-bottom: 0.3em; }
 }
 
 /* --- toolkit strip ------------------------------------------------------- */
-.toolkit { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.toolkit { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); }
 .toolkit h3 {
-  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
+  font-family: var(--serif); font-size: 0.7rem; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem;
 }
 .toolkit p { font-size: 0.9rem; color: var(--ink-2); margin: 0; }
 
 /* --- footer -------------------------------------------------------------- */
-.site-footer {
-  border-top: 1px solid var(--accent); padding-block: 2rem 2.75rem;
-  font-size: 0.85rem; color: var(--muted);
-}
+.site-footer { padding-block: 0 2.75rem; font-size: 0.85rem; color: var(--muted); }
+.footer-inner { border-top: 1px solid var(--accent); padding-top: 1.9rem; }
 .site-footer p { margin: 0 0 0.4rem; }
 
 /* --- print --------------------------------------------------------------- */
@@ -284,5 +296,6 @@ li { margin-bottom: 0.3em; }
 .panes { display: block; }
   .pane--left  { padding-right: 0; border-right: 0; }
   .pane--right { padding-left: 0; }
+  .pane--right > .section:first-child { border-top: 1px solid var(--accent); }
   .card, .doc { break-inside: avoid; border-color: #ccc; }
 }

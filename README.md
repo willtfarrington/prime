@@ -17,7 +17,7 @@ deployment process.
 ```
 index.html              the entire site (all content lives here)
                         two panes: documents/narrative/CV left, projects/toolkit
-                        right; they stack into one column below 60rem
+                        right; they stack into one column below 900px
 404.html                not-found page (the only file with absolute paths)
 assets/css/site.css     all styling; design tokens at the top of the file
 assets/js/site.js       email obfuscation, footer year, nav scroll-spy
@@ -103,6 +103,11 @@ are near-instant.
 ```bash
 git add -A && git commit -m "update CV highlights" && git push
 ```
+
+**When you change `site.css` or `site.js`, bump the `?v=` number on their
+`<link>`/`<script>` tags in `index.html` (and `404.html` for the stylesheet).**
+GitHub Pages serves assets with a ten-minute cache, so without the bump a
+returning visitor can keep rendering the old stylesheet over new markup.
 
 ## Domain & DNS (Cloudflare)
 
