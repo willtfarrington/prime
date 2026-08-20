@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Keeps the PDFs' text out of search indexes while the page itself stays fully
+# indexed. Most-specific match wins, so this overrides the Allow above for
+# .pdf URLs only. The files remain publicly downloadable by anyone following a
+# link -- this governs crawling, not access.
+Disallow: /*.pdf$
+
 # Sitemap: https://williamtfarrington.com/sitemap.xml
