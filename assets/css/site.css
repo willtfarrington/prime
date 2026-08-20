@@ -141,12 +141,6 @@ li { margin-bottom: 0.3em; }
 .masthead .email a { text-decoration: none; }
 .masthead .email a:hover { text-decoration: underline; }
 
-.meta-line {
-  font-size: 0.9rem; color: var(--muted); margin: 0 0 1.25rem;
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 0.85rem;
-}
-.meta-line .sep { color: var(--accent); }
-
 .contact-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem; list-style: none; margin: 0; padding: 0; }
 .contact-row li { margin: 0; }
 .contact-row a {
@@ -176,6 +170,12 @@ li { margin-bottom: 0.3em; }
 .subnav ul {
   display: flex; gap: clamp(0.9rem, 3vw, 2rem); list-style: none; margin: 0; padding: 0;
   overflow-x: auto; scrollbar-width: none;
+  /* Two declarations on purpose. A plain `center` on an overflowing scroller
+     pushes the first item off the left edge where it cannot be scrolled back
+     to; `safe center` falls back to flex-start exactly then. Engines that do
+     not parse `safe` ignore the second line and keep the first. */
+  justify-content: center;
+  justify-content: safe center;
 }
 .subnav ul::-webkit-scrollbar { display: none; }
 .subnav li { margin: 0; }
@@ -195,6 +195,7 @@ li { margin-bottom: 0.3em; }
   text-decoration: none; color: inherit;
 }
 .doc:hover { border-color: var(--accent); }
+.doc:hover strong { color: var(--accent); }
 .doc .doc-icon { flex: none; width: 1.5rem; height: 1.5rem; color: var(--accent); margin-top: 0.15rem; }
 .doc strong { display: block; font-family: var(--serif); font-size: 0.95rem; font-weight: 600; }
 .doc span { display: block; font-size: 0.82rem; color: var(--muted); }
@@ -211,6 +212,8 @@ li { margin-bottom: 0.3em; }
 .timeline .when {
   font-family: var(--serif); font-size: 0.74rem; letter-spacing: 0.06em;
   color: var(--muted); text-transform: uppercase;
+  /* keeps a range whole: never "04/2024 -" on one line and "03/2026" on the next */
+  white-space: nowrap;
 }
 .timeline .what { font-family: var(--serif); font-size: 0.98rem; font-weight: 600; margin: 0.1rem 0 0.15rem; }
 .timeline .where { font-size: 0.9rem; color: var(--ink-2); margin: 0; }

@@ -19,10 +19,13 @@ index.html              the entire site (all content lives here)
                         two panes: documents/narrative/CV left, projects/toolkit
                         right; they stack into one column below 900px
 404.html                not-found page (the only file with absolute paths)
+Farrington-William-Curriculum-Vitae.pdf
+Farrington-William-Professional-Narrative.pdf
+                        the two published documents, served straight from the
+                        root so their URLs stay short and readable
 assets/css/site.css     all styling; design tokens at the top of the file
-assets/js/site.js       email obfuscation, footer year, nav scroll-spy
+assets/js/site.js       footer year, nav scroll-spy
 assets/img/favicon.svg  monogram favicon
-assets/docs/            CV and narrative PDFs go here
 .nojekyll               tells GitHub Pages to serve files as-is
 robots.txt              crawler policy
 ```
@@ -34,33 +37,29 @@ Every spot needing your content is marked with an `EDIT:` comment in
 
 | Section | What to supply |
 | --- | --- |
-| Masthead | Credential line, email, city, licensure, NPI |
-| Identifier rail | LinkedIn slug, ORCID iD, Google Scholar profile ID |
-| Documents | Drop the two PDFs in, then convert each card to a link (see below) |
+| Masthead | Credential line and email |
+| Identifier rail | GitHub, LinkedIn, ORCID — all three open in a new tab |
+| Documents | Two tiles linking to the PDFs at the repo root (see below) |
 | Narrative | Three paragraphs distilled from the full narrative PDF |
 | Curriculum vitae | Timeline entries (newest first) and the "At a glance" facts |
 | Projects | Sharpen each hook; add cards for private work |
 | Toolkit | Prune to what you would defend in an interview |
 
-### Adding the PDFs
+### Revising the PDFs
 
-1. Save them as `assets/docs/farrington-cv.pdf` and
-   `assets/docs/farrington-professional-narrative.pdf`.
-2. In `index.html`, change each document card from
+Both documents sit at the repository root and are linked from the Documents
+tiles, so their public URLs are:
 
-   ```html
-   <div class="doc"> ... <span>PDF &middot; posting soon</span> ... </div>
-   ```
+```
+https://williamtfarrington.com/Farrington-William-Curriculum-Vitae.pdf
+https://williamtfarrington.com/Farrington-William-Professional-Narrative.pdf
+```
 
-   to
-
-   ```html
-   <a class="doc" href="assets/docs/farrington-cv.pdf"> ... <span>PDF</span> ... </a>
-   ```
-
-Keep the filenames stable — once they are on a CV or in an email signature,
-changing them breaks other people's links. When you revise, overwrite the same
-file rather than versioning the filename.
+**Overwrite these files in place.** The filenames carry no year precisely so
+that they never have to change: once a URL has been e-mailed or printed on a
+CV, renaming the file breaks the link for whoever is holding it. The vintage
+lives on the tile instead — update the `PDF · August 2026` line in
+`index.html` when you post a revision.
 
 ### Adding a project card
 
@@ -155,8 +154,8 @@ if the repo is later deleted or renamed. Not required; cheap insurance.
 ### Optional: a matching email address
 
 Cloudflare Email Routing (free) forwards e.g. `taylor@williamtfarrington.com`
-to your Gmail. If you set one up, update `data-user` and `data-domain` on the
-email link in `index.html` and the `<noscript>` fallback beneath it.
+to your Gmail. If you set one up, update the `mailto:` link in the masthead of
+`index.html`.
 
 The `willtfarrington.github.io/prime/` address keeps working alongside the
 custom domain.

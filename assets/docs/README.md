@@ -1,10 +1,11 @@
 # assets/docs
 
-The published PDFs live here. Expected filenames (referenced by `index.html`):
+Empty on purpose. The two published PDFs are served from the **repository
+root**, not from here, so that their public URLs stay short:
 
-- `farrington-cv.pdf`
-- `farrington-professional-narrative.pdf`
+- `Farrington-William-Curriculum-Vitae.pdf`
+- `Farrington-William-Professional-Narrative.pdf`
 
-Keep these filenames stable across revisions — they get printed on a CV and
-pasted into email signatures. Overwrite in place rather than adding version
-numbers to the name.
+Both are linked from the Documents tiles in `index.html`. Revise them by
+overwriting the files in place — renaming one breaks every link already sent
+out. See "Revising the PDFs" in the top-level `README.md`.

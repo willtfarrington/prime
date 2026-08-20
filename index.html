@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- Stops iOS Safari, Chrome on Android, and Edge from turning CV date ranges
+     (04/2024, 08/2011) and the NPI into tappable "phone number" links. -->
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+
 <!-- EDIT: title and description are what Google and link previews show. -->
 <title>William T. Farrington, M.D. — Acute Care Hospitalist &amp; Clinical Data Engineering</title>
 <meta name="description" content="Board-certified acute care hospitalist in Philadelphia. Curriculum vitae, professional narrative, and clinical and peri-clinical data projects.">
@@ -19,7 +23,7 @@
 <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/site.css?v=4">
+<link rel="stylesheet" href="assets/css/site.css?v=5">
 </head>
 
 <body>
@@ -31,40 +35,27 @@
      ====================================================================== -->
 <header class="masthead">
   <div class="container">
-    <p class="kicker">CV, Narrative, &amp; Portfolio</p>
+    <p class="kicker">Curriculum Vitae, Narrative, &amp; Portfolio</p>
 
     <h1>William T. Farrington, M.D.</h1>
 
     <!-- EDIT: one line per span. -->
     <p class="credentials">
-      <span>BS Biomedical Engineering / MD</span>
-      <span>Acute Care Hospitalist</span>
-      <span>Data Engineer &amp; Steward</span>
+      <span>Board-Certified, Pennsylvania-Licensed Acute Care Hospitalist</span>
+      <span>Data Engineer</span>
     </p>
 
     <p class="email">
       <a href="mailto:william.t.farrington@gmail.com">william.t.farrington@gmail.com</a>
     </p>
 
-    <!-- EDIT: delete any fact you would rather not publish. -->
-    <p class="meta-line">
-      <span>Philadelphia, PA</span>
-      <span class="sep" aria-hidden="true">/</span>
-      <span>Board certified, Internal Medicine (ABIM)</span>
-      <span class="sep" aria-hidden="true">/</span>
-      <span>Licensed in Texas &amp; Pennsylvania</span>
-      <span class="sep" aria-hidden="true">/</span>
-      <span>NPI 1154940732</span>
-    </p>
-
+    <!-- All three leave the site, so all three open in a new tab.
+         rel="me" is the identity half (it ties these profiles to this page);
+         rel="noopener" is the security half that target="_blank" wants. -->
     <ul class="contact-row">
-      <li><a href="https://github.com/willtfarrington" rel="me">GitHub</a></li>
-      <!-- EDIT: replace the LinkedIn slug. -->
-      <li><a href="https://www.linkedin.com/in/[your-linkedin-slug]" rel="me">LinkedIn</a></li>
-      <!-- EDIT: replace with your ORCID iD, or delete this line. -->
-      <li><a href="https://orcid.org/[0000-0000-0000-0000]" rel="me">ORCID</a></li>
-      <!-- EDIT: replace with your Scholar profile URL, or delete this line. -->
-      <li><a href="https://scholar.google.com/citations?user=[SCHOLAR_ID]" rel="me">Google&nbsp;Scholar</a></li>
+      <li><a href="https://github.com/willtfarrington" rel="me noopener" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/williamtfarrington/" rel="me noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="https://orcid.org/0000-0002-2233-9123" rel="me noopener" target="_blank">ORCID</a></li>
     </ul>
   </div>
 </header>
@@ -101,10 +92,11 @@
 
         <!-- ------------------------------------------------------------
              DOCUMENTS
-             WHEN THE PDFs EXIST: drop them in assets/docs/ using exactly
-             these filenames, then change each <div class="doc"> to
-             <a class="doc" href="assets/docs/NAME.pdf"> ... </a>
-             and delete the "posting soon" span.
+             Both tiles link to the PDFs sitting at the repository root, so the
+             public URLs are williamtfarrington.com/<filename>.pdf. When either
+             document is revised, overwrite the file in place: once a filename
+             has been e-mailed or printed on a CV, renaming it breaks the link
+             for whoever holds it.
              ------------------------------------------------------------ -->
         <section class="section" id="documents" aria-labelledby="documents-h">
           <div class="section-head">
@@ -113,26 +105,26 @@
           </div>
 
           <div class="doc-grid">
-            <div class="doc">
+            <a class="doc" href="Farrington-William-Curriculum-Vitae.pdf">
               <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>
               </svg>
               <div>
                 <strong>Curriculum vitae</strong>
-                <span>PDF &middot; posting soon</span>
+                <span>PDF &middot; August 2026</span>
               </div>
-            </div>
+            </a>
 
-            <div class="doc">
+            <a class="doc" href="Farrington-William-Professional-Narrative.pdf">
               <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>
                 <path d="M9 13h6M9 17h4"/>
               </svg>
               <div>
                 <strong>Professional narrative</strong>
-                <span>PDF &middot; posting soon</span>
+                <span>PDF &middot; August 2026</span>
               </div>
-            </div>
+            </a>
           </div>
         </section>
 
@@ -145,25 +137,43 @@
             <h2 id="narrative-h">Professional narrative</h2>
           </div>
 
-          <!-- EDIT: three paragraphs, roughly 60-90 words each, distilled from
-               the narrative PDF once it exists. -->
+          <!-- Distilled from the narrative PDF linked above, which also carries
+               the personal closing this page leaves out. -->
           <div class="prose">
             <p>
-              [Paragraph one — clinical identity. Where you trained, what kind of
-              inpatient medicine you practice, and what you are known for on the
-              wards. Written for a division chief who will read exactly this far
-              before deciding whether to open the CV.]
+              I am a board-certified internal medicine physician and acute care
+              hospitalist. Texas shaped the whole arc &mdash; biomedical
+              engineering and medical school at Texas A&amp;M, internal medicine
+              residency at Texas Health Presbyterian in Dallas, then two years as
+              an assistant professor in the Hospitalist Division of McGovern
+              Medical School, practicing at Memorial Hermann Hospital&ndash;Texas
+              Medical Center. In the spring of 2026 my fianc&eacute;e and I moved
+              to Philadelphia for her doctoral training in clinical psychology,
+              and I am planting professional roots of my own here.
             </p>
             <p>
-              [Paragraph two — the through-line. How the questions that surfaced
-              at the bedside turned into models, warehouses, and analyses; why you
-              build the tooling yourself rather than commissioning it; what that
-              combination lets you do that neither skill alone would.]
+              My foundation is high-volume, high-acuity inpatient medicine: a
+              group carrying more than 40% of the institution&rsquo;s admissions,
+              censuses above twenty medically and sociomedically complex
+              patients, rapid responses and code events, goals-of-care
+              facilitation, and continuous coordination across medical, surgical,
+              and allied teams. I staffed admissions with internal medicine
+              residents and revised a triage primer for each incoming intern
+              class. Written commendations followed for documentation compliance
+              and intra-departmental relations.
             </p>
             <p>
-              [Paragraph three — the synthesis. What engineering training changed
-              about how you practice, what practice changed about how you build,
-              and where the two are heading next.]
+              Scope past the bedside is the habit I inherited from that group:
+              triage shared with the emergency department, intensive care units,
+              and transfer center; root-cause analysis for the division&rsquo;s
+              quality assurance committee; Epic SlicerDicer credentialing in
+              support of capacity management analytics; and serial early-user
+              testing across three separate AI implementations. My engineering
+              background carries the rest &mdash; Python, SQL, and Bash built up
+              largely after hours into the projects listed alongside this, which
+              I build and maintain myself. Two convictions run through all of it:
+              modern physicians deserve modern tools, and those tools must never
+              compromise information sovereignty.
             </p>
           </div>
         </section>
@@ -470,11 +480,11 @@
   <div class="container">
     <div class="footer-inner">
       <p>&copy; <span id="year">2026</span> William T. Farrington. Content licensed for reading; source code on GitHub.</p>
-      <p>Built as a static page &mdash; <a href="https://github.com/willtfarrington/prime">source</a>. Last updated <time datetime="2026-08-18">18 August 2026</time>.</p>
+      <p>Built as a static page &mdash; <a href="https://github.com/willtfarrington/prime">source</a>. Last updated <time datetime="2026-08-20">20 August 2026</time>.</p>
     </div>
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=4"></script>
+<script src="assets/js/site.js?v=5"></script>
 </body>
 </html>
