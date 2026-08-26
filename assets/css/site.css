@@ -259,6 +259,59 @@ li { margin-bottom: 0.3em; }
 .badge--progress { color: var(--wip); }
 .badge--private  { color: var(--priv); }
 
+/* --- project screenshots (gallery + lightbox) ---------------------------- */
+/* .card-shots rides inside .card-grid but always spans the full row, so the
+   images stay width-matched to the card above them even if the grid ever
+   finds room for two columns. */
+.card-shots {
+  grid-column: 1 / -1;
+  display: grid; gap: 0.9rem;
+  margin: 0;
+}
+.card-shots figure { margin: 0; }
+.card-shots .shot { display: block; border-radius: var(--radius); }
+.card-shots img {
+  display: block; width: 100%; height: auto;
+  background: var(--surface);
+  border: 1px solid var(--rule); border-radius: var(--radius);
+}
+.card-shots .shot:hover img { border-color: var(--accent); }
+.card-shots figcaption {
+  font-size: 0.78rem; color: var(--muted);
+  margin-top: 0.35rem; letter-spacing: 0.02em;
+}
+
+/* The lightbox is built by site.js; none of this markup exists without it.
+   The overlay stays dark in both themes -- it is a photo viewer, not a page. */
+.lightbox {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(10, 11, 13, 0.92);
+}
+.lightbox[hidden] { display: none; }
+.lightbox img {
+  max-width: min(94vw, 100rem); max-height: 86vh;
+  display: block; border-radius: var(--radius);
+}
+.lightbox figure { margin: 0; }
+.lightbox figcaption {
+  text-align: center; color: #c4c8ce; font-size: 0.85rem; margin-top: 0.6rem;
+}
+.lightbox button {
+  position: absolute; z-index: 51;
+  display: flex; align-items: center; justify-content: center;
+  width: 2.75rem; height: 2.75rem; padding: 0;
+  font: 1.35rem/1 var(--serif); color: #e9e7e2;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 999px;
+  cursor: pointer;
+}
+.lightbox button:hover { background: rgba(255, 255, 255, 0.18); }
+.lightbox button:focus-visible { outline: 2px solid #dfa06e; outline-offset: 3px; }
+.lightbox .lightbox-close { top: 1rem; right: 1rem; }
+.lightbox .lightbox-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+.lightbox .lightbox-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+
 .subhead {
   font-family: var(--serif); font-size: 0.7rem; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--muted);
@@ -292,7 +345,8 @@ li { margin-bottom: 0.3em; }
     --ink: #000; --ink-2: #222; --muted: #555; --rule: #bbb; --accent: #000;
   }
   body { font-size: 11pt; }
-  .subnav, .skip-link { display: none !important; }
+  .subnav, .skip-link, .lightbox { display: none !important; }
+  .card-shots { break-inside: avoid; }
   .section { padding-block: 1.1rem; break-inside: avoid; }
   a { color: #000; text-decoration: none; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #555; word-break: break-all; }

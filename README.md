@@ -23,9 +23,13 @@ Farrington-William-Curriculum-Vitae.pdf
 Farrington-William-Professional-Narrative.pdf
                         the two published documents, served straight from the
                         root so their URLs stay short and readable
+hupsim_*.png            full-resolution hupsim screenshots, opened by the
+                        gallery lightbox on the projects pane
 assets/css/site.css     all styling; design tokens at the top of the file
-assets/js/site.js       footer year, nav scroll-spy
+assets/js/site.js       footer year, nav scroll-spy, screenshot lightbox
 assets/img/favicon.svg  monogram favicon
+assets/img/*-1280.png   downscaled copies of the screenshots, used as the
+                        inline gallery thumbnails
 .nojekyll               tells GitHub Pages to serve files as-is
 robots.txt              crawler policy
 ```
