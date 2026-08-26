@@ -261,11 +261,14 @@ li { margin-bottom: 0.3em; }
 
 /* --- project screenshots (gallery + lightbox) ---------------------------- */
 /* .card-shots rides inside .card-grid but always spans the full row, so the
-   images stay width-matched to the card above them even if the grid ever
-   finds room for two columns. */
+   pair stays width-matched to the card above it even if the grid ever finds
+   room for two columns. The two thumbnails sit side by side (same aspect
+   ratio, so their heights agree) to keep the cards below from sliding far
+   down the page; the full-size view lives in the lightbox. */
 .card-shots {
   grid-column: 1 / -1;
-  display: grid; gap: 0.9rem;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
   margin: 0;
 }
 .card-shots figure { margin: 0; }
