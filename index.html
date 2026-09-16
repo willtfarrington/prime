@@ -23,7 +23,7 @@
 <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/site.css?v=7">
+<link rel="stylesheet" href="assets/css/site.css?v=8">
 </head>
 
 <body>
@@ -304,11 +304,23 @@
              PROJECTS
              CARD ANATOMY
                <article class="card card--linked">  <- drop card--linked if no URL
-                 card-top : <h3> repo name (wrapped in <a> if public) + badge
-                 .hook    : one line, 12-20 words, what it does and why
-                 .tags    : 3-5 stack or method tags
+                 card-top  : <h3> repo name (wrapped in <a> if public) + badge
+                 .hook     : one line, 12-20 words, what it does and why
+                 .progress : optional; pre-v1 public repos only (see below)
+                 .next     : optional; one or two next-step bullets
+                 .tags     : 3-5 stack or method tags
                </article>
              BADGES: badge--public | badge--progress | badge--private
+
+             PROGRESS BLOCK (added 09/2026). Only the public repos still short
+             of v1 carry one; shipped and private work does not. The fill width
+             is the inline --pct on .progress-track, and the numbers come from
+             that project's roadmap/README.md: completed session briefs (or work
+             packets) over the planned total, rounded to a whole percent. The
+             bar itself is aria-hidden -- .progress-note carries the same fact
+             as text, so a screen reader hears it once. Refresh all three notes
+             together and move the as-of month with them; a bar without a
+             current date is worse than no bar.
              ------------------------------------------------------------ -->
         <section class="section" id="projects" aria-labelledby="projects-h">
           <div class="section-head">
@@ -368,8 +380,18 @@
                 A local EMR data warehouse over MIMIC-IV with end-to-end
                 provenance, protocol-frozen inquiry over retrospective data, and a
                 pre-commit leak guard &mdash; data never leaves the machine.
-                Public while in flight; v1 is still some way off.
               </p>
+
+              <div class="progress">
+                <div class="progress-track" style="--pct: 33%" aria-hidden="true"><span></span></div>
+                <p class="progress-note">57 of 172 session briefs &middot; as of September 2026</p>
+              </div>
+
+              <ul class="next">
+                <li><span class="lede">Next</span> Measurement-process summaries, then the cohort engine &mdash; specs, compiler, and attrition diagrams.</li>
+                <li><span class="lede">Then</span> Event-aligned timelines and the protocol-freeze registry, closing the concepts &amp; quality phase before the lab app&rsquo;s first pages.</li>
+              </ul>
+
               <ul class="tags">
                 <li>MIMIC-IV</li><li>DuckDB</li><li>Polars</li><li>Streamlit</li><li>data governance</li>
               </ul>
@@ -386,23 +408,19 @@
                 physician-driven software design can produce, on wholly
                 synthetic inputs.
               </p>
+
+              <div class="progress">
+                <div class="progress-track" style="--pct: 31%" aria-hidden="true"><span></span></div>
+                <p class="progress-note">12 of 39 session briefs &middot; as of September 2026</p>
+              </div>
+
+              <ul class="next">
+                <li><span class="lede">Next</span> Scoring, signature and debrief data behind a golden-test harness, plus the first formulary wave.</li>
+                <li><span class="lede">Then</span> The accessible app shell and one complete reviewed case, playable end to end &mdash; the v0.1 slice.</li>
+              </ul>
+
               <ul class="tags">
                 <li>simulation</li><li>medication reconciliation</li><li>medical education</li><li>synthetic data</li>
-              </ul>
-            </article>
-
-            <article class="card card--linked">
-              <div class="card-top">
-                <h3><a href="https://github.com/willtfarrington/epppsynth">epppsynth</a></h3>
-                <span class="badge badge--progress">V1 in progress</span>
-              </div>
-              <p class="hook">
-                A structured synthesis of existential psychotherapy literature for
-                physicians and patients &mdash; corpus work applied to the parts
-                of clinical life that resist quantification.
-              </p>
-              <ul class="tags">
-                <li>corpus synthesis</li><li>physician wellbeing</li>
               </ul>
             </article>
 
@@ -417,6 +435,17 @@
                 every result &mdash; it measures access; it does not model
                 outcomes.
               </p>
+
+              <div class="progress">
+                <div class="progress-track" style="--pct: 45%" aria-hidden="true"><span></span></div>
+                <p class="progress-note">18 of &asymp;&thinsp;40 work packets &middot; as of September 2026</p>
+              </div>
+
+              <ul class="next">
+                <li><span class="lede">Next</span> A fresh-clone reproducibility checkpoint covering the travel-time runs just completed.</li>
+                <li><span class="lede">Then</span> Full ingest &mdash; every source snapshotted, duplicate locations reconciled, opening hours parsed.</li>
+              </ul>
+
               <ul class="tags">
                 <li>civic data</li><li>public data</li><li>geospatial</li><li>transit access</li>
               </ul>
@@ -428,6 +457,21 @@
 
           <div class="card-grid">
             <!-- EDIT: sharpen any hook below; duplicate a card to add a project. -->
+
+            <article class="card">
+              <div class="card-top">
+                <h3>epppsynth</h3>
+                <span class="badge badge--private">Private</span>
+              </div>
+              <p class="hook">
+                A structured synthesis of existential psychotherapy literature for
+                physicians and patients &mdash; corpus work applied to the parts
+                of clinical life that resist quantification.
+              </p>
+              <ul class="tags">
+                <li>corpus synthesis</li><li>physician wellbeing</li>
+              </ul>
+            </article>
 
             <article class="card">
               <div class="card-top">
@@ -510,7 +554,7 @@
   <div class="container">
     <div class="footer-inner">
       <p>&copy; <span id="year">2026</span> William T. Farrington. Content licensed for reading; source code on GitHub.</p>
-      <p>Built as a static page &mdash; <a href="https://github.com/willtfarrington/prime">source</a>. Last updated <time datetime="2026-08-26">26 August 2026</time>.</p>
+      <p>Built as a static page &mdash; <a href="https://github.com/willtfarrington/prime">source</a>. Last updated <time datetime="2026-09-16">16 September 2026</time>.</p>
     </div>
   </div>
 </footer>

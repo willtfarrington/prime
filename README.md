@@ -73,7 +73,41 @@ Copy an existing `<article class="card">` block in the Projects section:
 - No public link → drop `card--linked` and leave the `<h3>` as plain text.
 - Status badge → `badge--public`, `badge--progress`, or `badge--private`.
 - Hook → one sentence, 12–20 words, what it does and why it matters.
+- Progress block → public repos short of v1 only; see below.
 - Tags → three to five; stack or method, lowercase.
+
+### Refreshing the progress bars
+
+The public pre-v1 cards (`mimicwarehouse`, `medrecsim`, `phillysim`) each carry
+a progress bar, a one-line note, and one or two next-step bullets. Shipped work
+and private work carry none — a bar is a promise to keep it current, so give one
+only to a project whose roadmap you actually re-read.
+
+Every number comes from that project's `roadmap/README.md`: count the completed
+session briefs (or work packets) against the planned total, and take the next
+one or two undone rows for the bullets. Then, in the card:
+
+```html
+<div class="progress">
+  <div class="progress-track" style="--pct: 33%" aria-hidden="true"><span></span></div>
+  <p class="progress-note">57 of 172 session briefs &middot; as of September 2026</p>
+</div>
+
+<ul class="next">
+  <li><span class="lede">Next</span> …</li>
+  <li><span class="lede">Then</span> …</li>
+</ul>
+```
+
+- `--pct` is the fill width; round to a whole percent. Omit it and the bar
+  renders empty, never full.
+- The bar is `aria-hidden` on purpose — `.progress-note` states the same fact in
+  words, so a screen reader hears it once rather than twice.
+- **Update all three cards in one sitting and move the as-of month with them.**
+  A bar carrying a stale date is worse than no bar; the date is what lets a
+  reader discount it.
+- Bullets are plain English, no EP numbers: they are read by people who have not
+  opened the roadmap, and they survive a renumbering.
 
 ### Restyling
 

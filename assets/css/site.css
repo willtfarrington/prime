@@ -259,6 +259,42 @@ li { margin-bottom: 0.3em; }
 .badge--progress { color: var(--wip); }
 .badge--private  { color: var(--priv); }
 
+/* --- v1 progress (pre-v1 public cards only) ------------------------------ */
+/* The track is 7px tall with a 1px border, so the fill reads as 5px. The fill
+   width is the inline --pct the card sets; without it the bar renders empty
+   rather than full, which is the safer failure. The bar is aria-hidden and
+   .progress-note states the same fact in words, so nothing is announced twice. */
+.progress-track {
+  height: 7px; border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--surface-2); overflow: hidden;
+}
+.progress-track span {
+  display: block; height: 100%; width: var(--pct, 0%);
+  background: var(--accent); border-radius: 999px;
+}
+.progress-note {
+  font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted-2);
+  margin: 0.4rem 0 0;
+}
+
+/* Next-step bullets. Custom markers rather than list-style so the dot picks up
+   --accent and sits on the first line's baseline at any wrap width. */
+.next { list-style: none; margin: 0; padding: 0; }
+.next li {
+  position: relative; font-size: 0.85rem; line-height: 1.5; color: var(--ink-2);
+  padding-left: 0.95rem; margin: 0 0 0.4rem;
+}
+.next li:last-child { margin-bottom: 0; }
+.next li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+}
+.next .lede {
+  font-family: var(--serif); font-size: 0.66rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); margin-right: 0.4em;
+  white-space: nowrap;
+}
+
 /* --- project screenshots (gallery + lightbox) ---------------------------- */
 /* .card-shots rides inside .card-grid but always spans the full row, so the
    pair stays width-matched to the card above it even if the grid ever finds
@@ -358,4 +394,8 @@ li { margin-bottom: 0.3em; }
   .pane--right { padding-left: 0; }
   .pane--right > .section:first-child { border-top: 1px solid var(--accent); }
   .card, .doc { break-inside: avoid; border-color: #ccc; }
+  /* Browsers drop background fills when printing, which would empty every
+     progress bar. .progress-note still carries the number either way. */
+  .progress-track { border-color: #999; }
+  .progress-track span { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
