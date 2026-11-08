@@ -9,3 +9,7 @@ desktop.ini
 # Never commit working copies of documents that belong in assets/docs/
 ~$*
 *.tmp
+
+# The editable Word sources of the two published PDFs stay local; only the
+# exported PDFs at the repository root are published.
+*.docx
