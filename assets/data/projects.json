@@ -1,0 +1,65 @@
+{
+  "as_of": "2026-11-25",
+  "projects": [
+    {
+      "name": "clauderoadmapwrangler",
+      "badge": "Rust · egui, PowerShell",
+      "done": 88,
+      "total": 90,
+      "percent": 97,
+      "next": [
+        {
+          "id": "EP-59",
+          "title": "Re-plan P6: the walk, the retro under the measured sizes, the sweep's state, addenda, P7 confirmed and cut to the size rule",
+          "size": "M"
+        },
+        {
+          "id": "EP-44",
+          "title": "The v2 planning interview through the `plan` skill: v2's decisions from D-31, its phases and the first phase's brief notes, from the direction in `v2-notes.md`, the risks and the routes carried from v1",
+          "size": "L"
+        }
+      ]
+    },
+    {
+      "name": "hupsim",
+      "badge": "Rust",
+      "done": 24,
+      "total": 24,
+      "percent": 100,
+      "next": []
+    },
+    {
+      "name": "medrecsim",
+      "badge": "TypeScript · pnpm",
+      "done": 12,
+      "total": 40,
+      "percent": 30,
+      "next": [
+        {
+          "id": "EP-12",
+          "title": "Engine scoring, signature, debrief data + golden harness",
+          "size": "M"
+        },
+        {
+          "id": "EP-13",
+          "title": "Formulary wave 1",
+          "size": "M"
+        }
+      ]
+    },
+    {
+      "name": "phillysim",
+      "badge": "Python · 3.13 · uv",
+      "done": 18,
+      "total": 19,
+      "percent": 94,
+      "next": [
+        {
+          "id": "EP-16",
+          "title": "Checkpoint 3: fresh-clone re-run with real data and the routing night, docs sync, license sweep, budgets with peak RSS, dependency triage, estimate accuracy with the M3 actual, M4 gate pre-read",
+          "size": "S"
+        }
+      ]
+    }
+  ]
+}

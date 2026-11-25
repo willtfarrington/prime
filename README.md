@@ -8,7 +8,9 @@ that live in their own repositories.
 
 The site is a single hand-authored static page — no build step, no
 dependencies, no external requests. Editing a file and pushing is the entire
-deployment process.
+deployment process. The one file not written by hand is
+`assets/data/projects.json`, the project cards' roadmap figures, which Roadmap
+Wrangler's site export writes (see "Refreshing the progress bars").
 
 ---
 
@@ -26,7 +28,12 @@ Farrington-William-Professional-Narrative.pdf
 hupsim_*.png            full-resolution hupsim screenshots, opened by the
                         gallery lightbox on the projects pane
 assets/css/site.css     all styling; design tokens at the top of the file
-assets/js/site.js       footer year, nav scroll-spy, screenshot lightbox
+assets/js/site.js       footer year, nav scroll-spy, screenshot lightbox, and
+                        the project cards' progress bars from the export
+assets/data/projects.json
+                        roadmap figures for the public project cards, written
+                        by `crw export site --yes`; never edited by hand (the
+                        export's other file, projects-cards.html, is ignored)
 assets/img/favicon.svg  monogram favicon
 assets/img/*-1280.png   downscaled copies of the screenshots, used as the
                         inline gallery thumbnails
@@ -73,42 +80,73 @@ Copy an existing `<article class="card">` block in the Projects section:
 - No public link → drop `card--linked` and leave the `<h3>` as plain text.
 - Status badge → `badge--public`, `badge--progress`, or `badge--private`.
 - Hook → one sentence, 12–20 words, what it does and why it matters.
-- Progress block → public repos short of v1 only; see below.
+- Progress block and `data-project` → public repos short of v1 only; see below.
 - Tags → three to five; stack or method, lowercase.
 
 ### Refreshing the progress bars
 
-The public pre-v1 cards (`mimicwarehouse`, `medrecsim`, `phillysim`,
-`clauderoadmapwrangler`) each carry
-a progress bar, a one-line note, and one or two next-step bullets. Shipped work
-and private work carry none — a bar is a promise to keep it current, so give one
-only to a project whose roadmap you actually re-read.
+The public pre-v1 cards each carry a progress bar, a one-line note, and one or
+two next-step bullets. Shipped work and private work carry none: a bar is a
+promise to keep it current.
 
-Every number comes from that project's `roadmap/README.md`: count the completed
-session briefs (or work packets) against the planned total, and take the next
-one or two undone rows for the bullets. Then, in the card:
+The figures come from Roadmap Wrangler's site export, which writes
+`assets/data/projects.json` here for the owner's public projects with a
+roadmap. To refresh every bar at once, in a terminal in this repository:
+
+```powershell
+crw export site          # preview: each card's figures, and why other projects are left out
+crw export site --yes    # write assets/data/projects.json (and the ignored snippet)
+```
+
+then commit `assets/data/projects.json` and push. `index.html` does not change:
+`site.js` fetches the file and fills each card that names a project in it. A
+card opts in like this:
 
 ```html
-<div class="progress">
-  <div class="progress-track" style="--pct: 37%" aria-hidden="true"><span></span></div>
-  <p class="progress-note">65 of 174 session briefs &middot; as of November 2026</p>
-</div>
+<article class="card card--linked" data-project="medrecsim">
+  …
+  <div class="progress" hidden>
+    <div class="progress-track" aria-hidden="true"><span></span></div>
+    <p class="progress-note"></p>
+  </div>
+```
 
-<ul class="next">
+- `site.js` sets the fill (`--pct`, rounded down), writes the note ("12 of 40
+  session briefs · as of 25 November 2026", the export's date), and unhides the
+  block. Without JavaScript, or with the file missing, the bar stays hidden: a
+  missing bar beats a stale one.
+- `data-unit="work packets"` on the block changes the noun (default "session
+  briefs").
+- `data-total-estimate="40"` sets a floor under the total, for a roadmap whose
+  later milestones have no rows yet (phillysim's M4–M8): the larger of the two
+  is shown, with "≈" while the estimate leads. Remove it once the milestones
+  are planned.
+- A project in the export with no `data-project` card is ignored (hupsim, which
+  has shipped); a card whose project the export lacks shows no bar.
+- The bar is `aria-hidden` on purpose: `.progress-note` states the same fact in
+  words, so a screen reader hears it once rather than twice.
+
+**mimicwarehouse is the exception.** The export leaves a data repository out
+unread, so its card keeps a hand-typed block: count the completed session
+briefs in its `roadmap/README.md` against the planned total and set `--pct`
+(rounded down) and the note's as-of month by hand. A route for it to publish
+its own figures is pending; see IN-3 in `roadmap/inbox.md`.
+
+### Next-step bullets
+
+```html
+<ul class="next" data-written-for="EP-12">
   <li><span class="lede">Next</span> …</li>
   <li><span class="lede">Then</span> …</li>
 </ul>
 ```
 
-- `--pct` is the fill width; round to a whole percent. Omit it and the bar
-  renders empty, never full.
-- The bar is `aria-hidden` on purpose — `.progress-note` states the same fact in
-  words, so a screen reader hears it once rather than twice.
-- **Update all four cards in one sitting and move the as-of month with them.**
-  A bar carrying a stale date is worse than no bar; the date is what lets a
-  reader discount it.
-- Bullets are plain English, no EP numbers: they are read by people who have not
-  opened the roadmap, and they survive a renumbering.
+- Write them from the project's next one or two undone rows, in plain English
+  with no EP numbers: they are read by people who have not opened the roadmap.
+- `data-written-for` names the brief they describe, the first undone row when
+  you wrote them. Once the export's first undone row is another brief,
+  `site.js` hides the list until you rewrite it and move the attribute on.
+  Readers never see the attribute, and a stale "Next" never shows.
 
 ### Restyling
 
@@ -129,8 +167,9 @@ python -m http.server 8000
 # then open http://localhost:8000
 ```
 
-Opening `index.html` by double-click also works, but a local server matches
-what GitHub Pages actually serves.
+Opening `index.html` by double-click also works, except that the browser then
+refuses to fetch `assets/data/projects.json`, so the export's progress bars stay
+hidden. A local server matches what GitHub Pages actually serves.
 
 ## Publishing
 

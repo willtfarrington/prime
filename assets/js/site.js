@@ -1,10 +1,15 @@
 /* ==========================================================================
    prime — progressive enhancement only.
-   Every word of content is in the HTML; this file adds three conveniences:
+   Every word of content is in the HTML save the roadmap figures on the
+   project cards; this file adds four conveniences:
      1. stamps the current year in the footer
      2. highlights the nav link for whichever section is on screen
      3. opens project screenshots in a lightbox instead of a bare image tab
-   The page is fully usable with JavaScript disabled.
+     4. draws the project cards' progress bars from Roadmap Wrangler's site
+        export (assets/data/projects.json) and hides next-step bullets the
+        project has moved past
+   The page is fully usable with JavaScript disabled; only those bars, which
+   ship hidden, stay out of sight.
    ========================================================================== */
 (function () {
   "use strict";
@@ -103,6 +108,83 @@
         box.open();
       });
     });
+  }
+
+  /* --- 4. roadmap figures from the site export ---------------------------
+     `crw export site --yes` (Roadmap Wrangler) rewrites
+     assets/data/projects.json whole at each export:
+       {"as_of": "YYYY-MM-DD",
+        "projects": [{"name", "badge", "done", "total", "percent",
+                      "next": [{"id", "title", "size"}]}]}
+     A card opts in with data-project="<name>". Its .progress block ships
+     hidden and empty; here it gets its fill and note and is shown. If the
+     file is missing or unreadable (the page opened by double-click, say) or
+     names no such project, the block stays hidden: a missing bar beats a
+     wrong one. The card's .next list is hand-written for the brief named in
+     data-written-for; once the export's first undone row is another brief,
+     the list is hidden until someone rewrites it. Text goes in through
+     textContent only, never as markup. This block must stay above the
+     scroll spy, which returns early when it has nothing to watch. */
+  var tracked = Array.prototype.slice.call(document.querySelectorAll(".card[data-project]"));
+  if (tracked.length && window.fetch) {
+    var MONTHS = ["January", "February", "March", "April", "May", "June", "July",
+                  "August", "September", "October", "November", "December"];
+    // Built from code points: a thin space typed as itself is invisible
+    // here and too easy to lose in an edit.
+    var APPROX = String.fromCharCode(0x2248, 0x2009);  // &asymp;&thinsp;
+    var DOT = " " + String.fromCharCode(0xb7) + " ";    // &middot;
+
+    // "2026-11-25" -> "25 November 2026", the footer's style. Parsed by
+    // hand: new Date("2026-11-25") is UTC midnight, which reads as the 24th
+    // anywhere west of Greenwich.
+    var longDate = function (iso) {
+      var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));
+      if (!m || +m[2] < 1 || +m[2] > 12) { return null; }
+      return (+m[3]) + " " + MONTHS[+m[2] - 1] + " " + m[1];
+    };
+    var isCount = function (n) { return typeof n === "number" && n >= 0 && n % 1 === 0; };
+
+    var draw = function (site) {
+      var asOf = site && longDate(site.as_of);
+      if (!asOf || !Array.isArray(site.projects)) { return; }
+      var byName = Object.create(null);
+      site.projects.forEach(function (p) {
+        if (p && typeof p.name === "string") { byName[p.name] = p; }
+      });
+
+      tracked.forEach(function (card) {
+        var p = byName[card.getAttribute("data-project")];
+        if (!p) { return; }
+
+        var block = card.querySelector(".progress");
+        var track = block && block.querySelector(".progress-track");
+        var note = block && block.querySelector(".progress-note");
+        if (track && note && isCount(p.done) && isCount(p.total) && p.total > 0 && p.done <= p.total) {
+          // A floor under the total, for a roadmap whose later milestones
+          // have no rows yet; it retires itself once the rows outgrow it.
+          var floor = parseInt(block.getAttribute("data-total-estimate"), 10) || 0;
+          var total = Math.max(p.total, floor);
+          var pct = Math.floor(p.done * 100 / total);   // rounded down, as the export's own
+          track.style.setProperty("--pct", pct + "%");
+          note.textContent = p.done + " of " + (total > p.total ? APPROX : "") + total + " " +
+            (block.getAttribute("data-unit") || "session briefs") + DOT + "as of " + asOf;
+          block.hidden = false;
+        }
+
+        var next = card.querySelector(".next[data-written-for]");
+        if (next && Array.isArray(p.next)) {
+          var first = p.next[0];
+          if (!first || first.id !== next.getAttribute("data-written-for")) { next.hidden = true; }
+        }
+      });
+    };
+
+    // no-cache revalidates each visit, so a pushed export shows at once
+    // rather than after GitHub Pages' ten-minute cache.
+    fetch("assets/data/projects.json", { cache: "no-cache" })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(draw)
+      .catch(function () { /* the bars stay hidden */ });
   }
 
   /* --- 2. scroll spy -----------------------------------------------------

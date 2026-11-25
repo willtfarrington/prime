@@ -7,7 +7,7 @@ confirming the choice with the owner; or decline with a reason. Write the dispos
 message's line and tick its box. One message per line,
 `- [ ] IN-n (from <project> EP-k, date) text`, delivered by the tool.
 
-- [ ] IN-1 (from clauderoadmapwrangler EP-27, 2026-11-13) From clauderoadmapwrangler's EP-27
+- [x] IN-1 (from clauderoadmapwrangler EP-27, 2026-11-13) From clauderoadmapwrangler's EP-27
   (2026-11-13): Roadmap Wrangler's site export writes `assets/data/projects.json` and
   `assets/data/projects-cards.html` into this repository when the owner runs `crw export site
   --yes`, replacing both at each export, and nothing else here. `projects.json` is `{"as_of":
@@ -17,6 +17,19 @@ message's line and tick its box. One message per line,
   the next rows. Wire one of them into the page once (fetch the JSON and draw the cards, or include
   the snippet), style the classes, and drop the hand-typed figures they replace; the tool never
   edits the page and never pushes.
+  **Disposition (2026-11-25, the owner's session for the remaining inbox): rolled in** on the
+  owner's word. The export refreshed (`crw export site --yes`, as of 2026-11-25) and wired as JSON:
+  `site.js` fetches `projects.json` and fills the bar and count on each card that names its project
+  (`data-project`), whose block ships hidden, so without JavaScript no bar shows rather than a stale
+  one; the unused snippet is git-ignored, so its classes need no style. The hand-written Next/Then
+  bullets stay, each keyed to the brief it describes (`data-written-for`) and hidden once the
+  export's first undone row is another; clauderoadmapwrangler's rewritten for EP-59. Two figures the
+  export cannot give yet, which the owner turned into messages (sent by `crw send`) and IN-3:
+  mimicwarehouse, a data repository left out unread, keeps its hand-typed bar until it publishes
+  its own figures (mimicwarehouse IN-3, clauderoadmapwrangler IN-19); phillysim's total holds a
+  floor of 40 (`data-total-estimate`) while its M4–M8 have no rows (phillysim IN-2). Every other
+  answer the recommended option. The README and the page's comments follow; checked in headless
+  Edge against the live export, a doctored one, a broken file and `file://`.
 - [x] IN-2 (from the owner, 2026-11-25) Sweep (Roadmap Wrangler EP-55): in one session I open here,
   /roadmap-wrangler:status first, settle with me: (1) State: active; paused, with a reason and a
   pickup note; maintenance, and what that means here; done; or abandoned and archived. I set it on
@@ -37,3 +50,12 @@ message's line and tick its box. One message per line,
   (3) Sizes: any brief this repository ever holds is S or M, no L; none exists, so nothing is
   re-sized; hand-opened sessions carry no size. (4) Manual: **none owed**; the README's editing
   guide serves. This repository has no roadmap, so this line is the record.
+- [ ] IN-3 (from prime, 2026-11-25) Follow-up to IN-1, for a session once mimicwarehouse's and
+  phillysim's sweeps have answered the messages of 2026-11-25 (mimicwarehouse IN-3,
+  clauderoadmapwrangler IN-19, phillysim IN-2); until then it stays open. (1) When `crw export
+  site` carries mimicwarehouse from figures it publishes itself, give its card
+  `data-project="mimicwarehouse"` and an empty hidden progress block, key its bullets with
+  `data-written-for`, and drop its hand-typed bar, its comment and the README's exception.
+  (2) Settle phillysim's bar with the owner once its roadmap says how far v1 runs, dropping
+  `data-total-estimate` when its rows cover v1. (3) Re-run the export, check every card in a
+  browser, and put the commit and any push to the owner.
