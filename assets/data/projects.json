@@ -1,11 +1,11 @@
 {
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-26",
   "projects": [
     {
       "name": "clauderoadmapwrangler",
       "badge": "Rust · egui, PowerShell",
-      "done": 88,
-      "total": 90,
+      "done": 90,
+      "total": 92,
       "percent": 97,
       "next": [
         {
@@ -24,25 +24,55 @@
       "name": "hupsim",
       "badge": "Rust",
       "done": 24,
-      "total": 24,
-      "percent": 100,
-      "next": []
+      "total": 26,
+      "percent": 92,
+      "next": [
+        {
+          "id": "EP-24",
+          "title": "First manual: a rebuild on today's toolchain, then `docs/manual.md` for the model as P1–P2 left it, built to PDF",
+          "size": "M"
+        },
+        {
+          "id": "EP-25",
+          "title": "Plan the second hospital: a planning interview through `/roadmap-wrangler:plan`, its decisions and the next phase's rows",
+          "size": "M"
+        }
+      ]
     },
     {
       "name": "medrecsim",
       "badge": "TypeScript · pnpm",
       "done": 12,
-      "total": 40,
-      "percent": 30,
+      "total": 41,
+      "percent": 29,
       "next": [
+        {
+          "id": "EP-11a",
+          "title": "Dependency refresh: Dependabot PRs #9 and #7 and the open alerts (D-ROAD-005)",
+          "size": "M"
+        },
         {
           "id": "EP-12",
           "title": "Engine scoring, signature, debrief data + golden harness",
           "size": "M"
+        }
+      ]
+    },
+    {
+      "name": "mimicwarehouse",
+      "badge": "Python · 3.13 · uv",
+      "done": 66,
+      "total": 175,
+      "percent": 37,
+      "next": [
+        {
+          "id": "EP-55",
+          "title": "Latency marts A: first-day features + itemid rollups ⏱",
+          "size": "M"
         },
         {
-          "id": "EP-13",
-          "title": "Formulary wave 1",
+          "id": "EP-56",
+          "title": "Latency marts B: hourly bins + <=5 s benchmark",
           "size": "M"
         }
       ]

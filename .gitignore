@@ -13,8 +13,3 @@ desktop.ini
 # The editable Word sources of the two published PDFs stay local; only the
 # exported PDFs at the repository root are published.
 *.docx
-
-# Roadmap Wrangler's site export writes two files into assets/data/. The page
-# draws its own cards from projects.json (tracked); the ready-made HTML snippet
-# beside it is the alternative the page does not use.
-assets/data/projects-cards.html

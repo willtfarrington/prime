@@ -50,7 +50,7 @@ message's line and tick its box. One message per line,
   (3) Sizes: any brief this repository ever holds is S or M, no L; none exists, so nothing is
   re-sized; hand-opened sessions carry no size. (4) Manual: **none owed**; the README's editing
   guide serves. This repository has no roadmap, so this line is the record.
-- [ ] IN-3 (from prime, 2026-11-25) Follow-up to IN-1, for a session once mimicwarehouse's and
+- [x] IN-3 (from prime, 2026-11-25) Follow-up to IN-1, for a session once mimicwarehouse's and
   phillysim's sweeps have answered the messages of 2026-11-25 (mimicwarehouse IN-3,
   clauderoadmapwrangler IN-19, phillysim IN-2); until then it stays open. (1) When `crw export
   site` carries mimicwarehouse from figures it publishes itself, give its card
@@ -59,3 +59,41 @@ message's line and tick its box. One message per line,
   (2) Settle phillysim's bar with the owner once its roadmap says how far v1 runs, dropping
   `data-total-estimate` when its rows cover v1. (3) Re-run the export, check every card in a
   browser, and put the commit and any push to the owner.
+  **Disposition (2026-11-26, the owner's session for the inbox and upkeep): rolled in**, every answer
+  the recommended option. (1) The route is built at both ends: crw's EP-58b carries a data
+  repository's card from a file it writes itself outside its folder, mimicwarehouse's EP-174 writes
+  it after each commit, and the owner's first export with it (crw's OT-46) read 66 of 175. Its card
+  names its project now, ships an empty hidden block and keys its bullets to EP-55, the latency marts
+  they describe; the hand-typed bar, its comment and the README's exception are gone. EP-58b also
+  stopped writing the snippet, so the README's mentions of it, the stale copy and its ignore rule
+  went too. (2) phillysim's roadmap says how far v1 runs (IN-4), its rows do not yet: the floor is
+  now 57, that paragraph's terms at the high bounds (19 rows, 28 milestone sessions, 4 refinement
+  gates, about 6 checkpoints, which its milestones.md counts outside the sessions). Dropping it is
+  IN-5, and phillysim's EP-16 was asked to say when (phillysim's IN-3, sent by `crw send` on the
+  owner's word). (3) The export re-run (as of 2026-11-26; hupsim's two post-v1 rows the only change,
+  its shipped card untouched) and every card checked in headless Edge: mimicwarehouse 66 of 175,
+  medrecsim 12 of 41 with its bullets hidden behind its new EP-11a (left so: they return once EP-11a
+  is done), phillysim 18 of ≈57, clauderoadmapwrangler 90 of 92. Committed and pushed on the
+  owner's word.
+- [x] IN-4 (from the owner, 2026-11-25) From the phillysim sweep of 2026-11-25, answering its IN-2
+  (your IN-1; your IN-3 part 2): its roadmap now says how far v1 runs in words, not yet in rows. The
+  paragraph How far v1 runs, under the M4-M8 heading of its roadmap/README.md: v1 is M0 to M7; by
+  milestones.md high bounds the milestones ahead are M4 7 sessions, M5 7, M6 10 and M7 4, sized
+  before its new brief sizes (S about 30 min, M about 45), each opened by a refinement gate, with a
+  checkpoint about every five packets. No rows were added, so the export still reads 18 of 19 and
+  your IN-3 condition (rows that cover v1) does not hold yet. Its next brief, EP-16, restates the
+  remaining v1 work as a count of briefs in its estimate review and settles with the owner which
+  rows carry it. Until then that paragraph is the source an interim estimate can cite.
+  **Disposition (2026-11-26, the same session): rolled in** with IN-3 (2), on the owner's word:
+  this paragraph is the cited source of the card's interim floor, raised from 40 to 57 (the four
+  milestones at their high bounds, 28 sessions, with their 4 gates and about 6 checkpoints, over the
+  19 rows), so the card reads 18 of ≈57 work packets. The floor goes once phillysim's rows cover v1
+  (IN-5).
+- [ ] IN-5 (from prime, 2026-11-26) Follow-up to IN-3 (2) and IN-4, for a session once phillysim's
+  roadmap rows cover v1 (its EP-16 settles which rows carry M4 to M7 with their gates and
+  checkpoints, and was asked by its IN-3 to hand on here when they do; `crw export site` then reads
+  its total near that count, not 19): take `data-total-estimate` and the comment above it off
+  phillysim's progress block, reword the README's bullet on the attribute (the mechanism stays,
+  phillysim no longer its example), re-run the export, check the card in a browser, and put the
+  commit and any push to the owner. If EP-16's count comes in under 57, do it at once: the floor
+  would hold the card's total above the rows.

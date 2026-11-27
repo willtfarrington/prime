@@ -32,8 +32,7 @@ assets/js/site.js       footer year, nav scroll-spy, screenshot lightbox, and
                         the project cards' progress bars from the export
 assets/data/projects.json
                         roadmap figures for the public project cards, written
-                        by `crw export site --yes`; never edited by hand (the
-                        export's other file, projects-cards.html, is ignored)
+                        by `crw export site --yes`; never edited by hand
 assets/img/favicon.svg  monogram favicon
 assets/img/*-1280.png   downscaled copies of the screenshots, used as the
                         inline gallery thumbnails
@@ -95,7 +94,7 @@ roadmap. To refresh every bar at once, in a terminal in this repository:
 
 ```powershell
 crw export site          # preview: each card's figures, and why other projects are left out
-crw export site --yes    # write assets/data/projects.json (and the ignored snippet)
+crw export site --yes    # write assets/data/projects.json
 ```
 
 then commit `assets/data/projects.json` and push. `index.html` does not change:
@@ -117,20 +116,20 @@ card opts in like this:
   missing bar beats a stale one.
 - `data-unit="work packets"` on the block changes the noun (default "session
   briefs").
-- `data-total-estimate="40"` sets a floor under the total, for a roadmap whose
-  later milestones have no rows yet (phillysim's M4–M8): the larger of the two
-  is shown, with "≈" while the estimate leads. Remove it once the milestones
-  are planned.
+- `data-total-estimate="57"` sets a floor under the total, for a roadmap whose
+  later milestones have no rows yet (phillysim's M4–M7, the rest of its v1):
+  the larger of the two is shown, with "≈" while the estimate leads. Remove it
+  once those milestones have rows (IN-5 in `roadmap/inbox.md`).
 - A project in the export with no `data-project` card is ignored (hupsim, which
   has shipped); a card whose project the export lacks shows no bar.
 - The bar is `aria-hidden` on purpose: `.progress-note` states the same fact in
   words, so a screen reader hears it once rather than twice.
 
-**mimicwarehouse is the exception.** The export leaves a data repository out
-unread, so its card keeps a hand-typed block: count the completed session
-briefs in its `roadmap/README.md` against the planned total and set `--pct`
-(rounded down) and the note's as-of month by hand. A route for it to publish
-its own figures is pending; see IN-3 in `roadmap/inbox.md`.
+**Data repositories.** The export never reads inside a data repository.
+mimicwarehouse publishes its own figures instead: after each commit it writes
+a card file outside its folder (`%LOCALAPPDATA%\clauderoadmapwrangler\cards\`),
+which the export carries, so its card opts in like the others. The preview
+names that file's day, or why the card was left out.
 
 ### Next-step bullets
 
